@@ -1,0 +1,25 @@
+services:
+  updater:
+    image: updater
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - releases:/releases/
+    environment:
+      LOG_LEVEL: DEBUG
+      RELEASES_REPO_OWNER: brainbot-com
+      RELEASES_REPO_NAME: localai-releases
+      RELEASES_DIR: /releases/
+      COMPOSE_ENV_FILE_HOST: ${COMPOSE_ENV_FILE}
+      RELEASES_VOLUME_NAME: localai_releases
+      COMPOSE_PROJECT_NAME: localai
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+    ports:
+      - "8000:8000"
+    command:
+      - "api"
+
+volumes:
+  releases:
