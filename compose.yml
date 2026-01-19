@@ -9,9 +9,8 @@ services:
       LOG_LEVEL: DEBUG
       RELEASES_REPO_OWNER: brainbot-com
       RELEASES_REPO_NAME: localai-releases
-      RELEASES_DIR: /releases/
-      COMPOSE_ENV_FILE_HOST: ${COMPOSE_ENV_FILE:?error}
-      RELEASES_VOLUME_NAME: localai_releases
+      RELEASES_DIR_CONTAINER: /releases/
+      RELEASES_DIR_HOST: ${RELEASES_DIR_HOST:?error}
       COMPOSE_PROJECT_NAME: localai
       API_HOST: 0.0.0.0
       API_PORT: 8000
