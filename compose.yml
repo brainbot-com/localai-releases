@@ -10,16 +10,29 @@ services:
       RELEASES_REPO_OWNER: brainbot-com
       RELEASES_REPO_NAME: localai-releases
       RELEASES_DIR: /releases/
-      COMPOSE_ENV_FILE_HOST: ${COMPOSE_ENV_FILE}
+      COMPOSE_ENV_FILE_HOST: ${COMPOSE_ENV_FILE:?error}
       RELEASES_VOLUME_NAME: localai_releases
       COMPOSE_PROJECT_NAME: localai
       API_HOST: 0.0.0.0
       API_PORT: 8000
       GITHUB_TOKEN: ${GITHUB_TOKEN}
-    ports:
-      - "8000:8000"
     command:
       - "api"
+
+  dashboard-frontend:
+    image: dashboard-frontend
+    restart: always
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      DASHBOARD_BACKEND_URL: http://dashboard-backend:8000
+      UPDATER_API_URL: http://updater:8000
+
+  dashboard-backend:
+    image: dashboard-backend
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
   releases:
