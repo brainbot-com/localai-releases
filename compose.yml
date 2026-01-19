@@ -6,7 +6,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${RELEASES_DIR_HOST:?error}:/releases
     environment:
-      LOG_LEVEL: DEBUG
+      LOG_LEVEL: INFO
       RELEASES_REPO_OWNER: brainbot-com
       RELEASES_REPO_NAME: localai-releases
       RELEASES_DIR_CONTAINER: /releases/
