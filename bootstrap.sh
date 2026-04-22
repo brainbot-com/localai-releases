@@ -23,7 +23,7 @@ die_usage() {
   exit 1
 }
 
-SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z][0-9A-Za-z.-]*)?(\+[0-9A-Za-z][0-9A-Za-z.-]*)?'
+SEMVER_REGEX='[0-9]+\.[0-9]+\.[0-9]+(-?[0-9A-Za-z][0-9A-Za-z.-]*)?(\+[0-9A-Za-z][0-9A-Za-z.-]*)?'
 RELEASE_ARCHIVE_ASSET_REGEX='^localai-(.+)\.tar\.gz$'
 
 # Parse the positional releases directory first, then process named flags.
